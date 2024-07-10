@@ -1,12 +1,16 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import { Cards } from './components/Cards';
+import { Navbar } from './components/Navbar';
+import { Filter } from './components/Filter';
+import { filterData, apiUrl } from './data';
 
 function App() {
-  const [text, setText] = useState('');
-  function changeHandler(e) {
-    console.log(text);
-    setText(e.target.value);
-  }
+  // const [text, setText] = useState('');
+  // function changeHandler(e) {
+  //   console.log(text);
+  //   setText(e.target.value);
+  // }
 
   // Case 1 - run whenever App component renders
   // useEffect(() => {
@@ -24,17 +28,28 @@ function App() {
   // }, [text]);
 
   // Case 4 - To unmount something
-  useEffect(() => {
-    console.log('add event listener');
+  // useEffect(() => {
+  //   console.log('add event listener');
 
-    return () => {
-      console.log('remove event listener');
-    };
-  }, [text]);
+  //   return () => {
+  //     console.log('remove event listener');
+  //   };
+  // }, [text]);
+
+  const [response, setResponse] = useState('');
+
+  useEffect(() => {
+    fetch(apiUrl)
+      .then((coursesData) => coursesData.json())
+      .then((courses) => setResponse(courses.data))
+      .catch((e) => console.error('Error: ', e));
+  }, []);
 
   return (
     <div>
-      <input type="text" onChange={changeHandler}></input>
+      <Navbar />
+      <Filter filterData={filterData} />
+      <Cards courses={response} />
     </div>
   );
 }
