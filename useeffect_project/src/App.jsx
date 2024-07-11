@@ -4,6 +4,7 @@ import { Cards } from './components/Cards';
 import { Navbar } from './components/Navbar';
 import { Filter } from './components/Filter';
 import { filterData, apiUrl } from './data';
+import { toast } from 'react-toastify';
 
 function App() {
   // const [text, setText] = useState('');
@@ -36,20 +37,20 @@ function App() {
   //   };
   // }, [text]);
 
-  const [response, setResponse] = useState('');
-
+  const [courses, setCourses] = useState([]);
+  const [category, setCategory] = useState('All');
   useEffect(() => {
     fetch(apiUrl)
       .then((coursesData) => coursesData.json())
-      .then((courses) => setResponse(courses.data))
-      .catch((e) => console.error('Error: ', e));
+      .then((courses) => setCourses(courses.data))
+      .catch((e) => toast.error(e));
   }, []);
 
   return (
     <div>
       <Navbar />
-      <Filter filterData={filterData} />
-      <Cards courses={response} />
+      <Filter filterData={filterData} setCategory={setCategory} />
+      <Cards courses={courses} category={category} />
     </div>
   );
 }

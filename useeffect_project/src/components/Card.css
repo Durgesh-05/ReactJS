@@ -6,7 +6,8 @@
   overflow: hidden;
   max-width: 300px;
   margin: 16px;
-  text-align: center;
+  text-align: start;
+  font-family: 'Arial', sans-serif;
 }
 
 .img-container {
@@ -29,7 +30,7 @@
 
 .card h4 {
   font-size: 1.25em;
-  margin: 16px 0 8px;
+  margin: 0 16px 16px;
 }
 
 .card p {
