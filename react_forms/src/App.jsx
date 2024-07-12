@@ -20,6 +20,7 @@ function App() {
     text: '',
     isVisible: false,
     mode: '',
+    favCar: '',
   });
 
   function changeHandler(event) {
@@ -32,11 +33,14 @@ function App() {
     });
   }
 
-  console.log(formData);
+  function submitHandler(event) {
+    event.preventDefault();
+    console.log('Sending form data to backend...', formData);
+  }
 
   return (
     <div className="container">
-      <form action="" className="form">
+      <form onSubmit={submitHandler} className="form">
         <input
           type="text"
           placeholder="Name"
@@ -45,7 +49,7 @@ function App() {
           value={formData.firstName}
         />
         <input
-          type="text"
+          type="number"
           placeholder="Age"
           onChange={changeHandler}
           name="lastName"
@@ -98,6 +102,22 @@ function App() {
           />
           <label htmlFor="mode">Offline Mode</label>
         </fieldset>
+        <div>
+          <label htmlFor="favCar">Favourite Car </label>
+          <select
+            name="favCar"
+            id="favCar"
+            onChange={changeHandler}
+            value={formData.favCar}
+          >
+            <option value=""></option>
+            <option value="porsche">Porsche</option>
+            <option value="ferrari">Ferrari</option>
+            <option value="buggati">Buggati</option>
+            <option value="lambo">Lamborgini</option>
+          </select>
+        </div>
+        <input type="submit" value="submit" />
       </form>
     </div>
   );
