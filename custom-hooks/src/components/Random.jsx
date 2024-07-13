@@ -5,6 +5,7 @@ export const Random = () => {
   const [gif, setGif] = useState('');
   console.log(import.meta.env.VITE_GIPHY_API_KEY);
   async function fetchGIF() {
+    // uOAoehRR44yq7d1m9rpBM60iZ6hhAFFT
     const url = `https://api.giphy.com/v1/gifs/random?api_key=${
       import.meta.env.VITE_GIPHY_API_KEY
     }`;
