@@ -8,6 +8,7 @@ import { Signup } from './pages/Signup';
 import { Dashboard } from './pages/Dashboard';
 import { Contact } from './pages/Contact';
 import { About } from './pages/About';
+import { NotFound } from './pages/NotFound';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -20,8 +21,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="*" element />
+        <Route path="/dashboard" element={loggedIn?<Dashboard />:<Login/>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
