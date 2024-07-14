@@ -5,9 +5,9 @@ import { Tag } from './components/Tag';
 
 function App() {
   return (
-    <div>
+    <div className="app-container">
       <h1>RANDOM GIFS</h1>
-      <div>
+      <div className="gif-container">
         <Random />
         <Tag />
       </div>

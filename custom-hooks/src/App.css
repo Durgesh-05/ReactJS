@@ -1,0 +1,25 @@
+.app-container {
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 30px;
+  color: #333;
+  font-size: 2.5rem;
+}
+
+.gif-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .gif-container {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+  }
+}
