@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useRecoilValue, RecoilRoot, useRecoilState } from 'recoil';
+import { countAtom } from './store/atoms/count';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <RecoilRoot>
+        <Count />
+      </RecoilRoot>
+    </div>
+  );
 }
 
-export default App
+function Count() {
+  console.log('re-render');
+  return (
+    <div>
+      <CountRenderer />
+      <Buttons />
+    </div>
+  );
+}
+
+function CountRenderer() {
+  const count = useRecoilValue(countAtom);
+  return (
+    <div>
+      <b>{count}</b>
+    </div>
+  );
+}
+
+function Buttons() {
+  const [count, setCount] = useRecoilState(countAtom);
+  return (
+    <div>
+      <button onClick={() => setCount((prev) => prev + 1)}>Increase</button>
+      <button onClick={() => setCount((prev) => prev - 1)}>Decrease</button>
+    </div>
+  );
+}
+
+export default App;
